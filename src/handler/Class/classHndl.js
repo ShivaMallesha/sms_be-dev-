@@ -29,33 +29,7 @@ exports.getClass=async(req,res)=>{
 exports.updateClass=async(req,res)=>{
     try{
         updtId=req.body._id;
-        updtVl=req.body.Role_Name;
-        var query={};
-        if(req.body.Class_name){
-            query["Class_name"]=req.body.Class_name
-        }
-        if(req.body.Class_type){
-            query["Class_type"]=req.body.Class_type
-        }
-        if(req.body.Class_hrs){
-            query["Class_hrs"]=req.body.Class_hrs
-        }
-        if(req.body.Course_id){
-            query["Course_id"]=req.body.Course_id
-        }
-        if(req.body.isActive){
-            query["isActive"]=req.body.isActive
-        }
-        if(req.body.Created_date){
-            query["Created_date"]=req.body.Created_date
-        }
-        if(req.body.Modified_date){
-            query["Modified_date"]=req.body.Modified_date
-        }
-        /*if(req.body){
-            query["updtData"]=req.body;
-        }*/
-        classModel.findOneAndUpdate({_id: updtId},{$set:query},{new:true}).then((docs)=>{
+        classModel.findOneAndUpdate({_id: updtId},{$set:req.body},{new:true}).then((docs)=>{
         if(docs) {
            res.send({message:"Updated successfully"});
         } else {

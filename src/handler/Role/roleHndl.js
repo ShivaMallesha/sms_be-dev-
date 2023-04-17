@@ -28,24 +28,7 @@ exports.getRole = async (req, res) => {
 exports.updateRole=async(req,res)=>{
     try{
         updtId=req.body._id;
-        updtVl=req.body.Role_Name;
-        var query={};
-        if(req.body.Role_Name){
-            query["Role_Name"]=req.body.Role_Name
-        }
-        if(req.body.isActive){
-            query["isActive"]=req.body.isActive
-        }
-        if(req.body.Created_Date){
-            query["Created_Date"]=req.body.Created_Date
-        }
-        if(req.body.Modified_Date){
-            query["Modified_Date"]=req.body.Modified_Date
-        }
-        /*if(req.body){
-            query["updtData"]=req.body;
-        }*/
-        roleModel.findOneAndUpdate({_id: updtId},{$set:query},{new:true}).then((docs)=>{
+        roleModel.findOneAndUpdate({_id: updtId},{$set:req.body},{new:true}).then((docs)=>{
         if(docs) {
            resolve({success:true,data:docs});
            res.send({message:"Updated successfully"});
